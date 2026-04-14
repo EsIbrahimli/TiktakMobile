@@ -1,16 +1,33 @@
 import { Text, View, TextInput, TouchableOpacity } from 'react-native';
+import { useNavigation } from "@react-navigation/native";
+import { loginUser, registerUser } from "../../services/authService";
+import { useAuthStore } from "../../store/useAuthStore";
+import React, { useState } from "react";
 
 import { styles }  from './Auth.styles';
 
  const SignupPage = () => {
-  const handleSignup = () => {
+
+  const navigation = useNavigation();
+
+  const [name, setName] = useState("");
+  const [phone, setPhone] = useState("");
+  const [password, setPassword] = useState("");
+  const handleSignup = async () => {
   if (!name || !phone || !password) {
     alert("Bütün məlumatları doldurun");
     return;
   }
+   try {
+      await registerUser({ name, phone, password });
+      alert("Qeydiyyat uğurlu oldu! İndi daxil ola bilərsiniz.");
+      navigation.navigate("Login");
+    } catch (error) {
+      alert("Qeydiyyat zamanı xəta baş verdi. Yenidən cəhd edin.");
+    }
 
-  console.log("signup:", name, phone, password);
 };
+  
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Qeydiyyatdan keç</Text>
@@ -24,7 +41,7 @@ import { styles }  from './Auth.styles';
       </TouchableOpacity>
 
       <Text style={styles.link}>
-        Hesabınız var? {""} <Text style={styles.linkText}>Daxil olun</Text>
+        Hesabınız var? {""} <Text style={styles.linkText} onPress={() => navigation.navigate("Login")}>Daxil olun</Text>
       </Text>
     </View>
   );

@@ -2,17 +2,30 @@ import React from "react";
 import { View, Text, TextInput, TouchableOpacity, StyleSheet } from "react-native";
 import { styles } from "./Auth.styles";
 import { useNavigation } from "@react-navigation/native";
+import apiClient from "../../services/instance";
+import { loginUser, registerUser } from "../../services/authService";
+import { useAuthStore } from "../../store/useAuthStore";
+import { useState } from "react"; 
+
+
+
+
 
 const LoginPage = () => {
   const navigation = useNavigation();
+  const { setAuth } = useAuthStore();
 
-  const handleLogin = () => {
-  if (!phone || !password) {
-    alert("Zəhmət olmasa bütün xanaları doldurun");
-    return;
+  const [phone, setPhone] = React.useState("");
+  const [password, setPassword] = React.useState("");
+
+  const handleLogin = async () => {
+    const res = await loginUser({ phone, password });
+ if (phone === "+994105554422" && password === "1234") {
+    setAuth(res.data);
+    navigation.replace("Home");
+  } else {
+    alert("Telefon və ya şifrə yanlışdır");
   }
-
-  console.log("login:", phone, password);
 };
 
   return (
