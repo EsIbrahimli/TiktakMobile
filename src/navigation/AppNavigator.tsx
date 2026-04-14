@@ -12,8 +12,9 @@ const AppNavigator = () => {
       <Stack.Navigator
         screenOptions={{ headerShown: false }} // Çünki öz Header-i istifadə edirik
       >
+         <Stack.Screen name="Auth" component={AuthNavigator} />
         <Stack.Screen name="Home" component={HomeScreen} />
-        <Stack.Screen name="Auth" component={AuthNavigator} />
+       
       </Stack.Navigator>
     </NavigationContainer>
   );

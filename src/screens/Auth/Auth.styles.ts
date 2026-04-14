@@ -36,6 +36,12 @@ const styles = StyleSheet.create({
     marginTop: 15,
     color: "#888",
   },
+  
+
+linkText: {
+  color: "#6CC24A",
+  fontWeight: "600",
+},
 });
 export { styles };
 
