@@ -1,10 +1,12 @@
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
+import Logo from '../assets/icons/basket.svg';
 
 const Header = () => {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Tiktak</Text>
+      <Text style={styles.title}>TIK TAK</Text>
+      <Logo width={23} height={26} />
     </View>
   );
 };
@@ -12,14 +14,17 @@ const Header = () => {
 const styles = StyleSheet.create({
   container: {
     height: 60,
-    backgroundColor: "#3498db",
-    justifyContent: "center",
+    flexDirection: "row",
+    justifyContent: "space-between",
     alignItems: "center",
+    paddingHorizontal: 15,
+    borderBottomColor: "#ccc",
+    borderBottomWidth: 0.1,
+    boxShadow: "0 2px 4px rgba(0,0,0,0.1)",
   },
   title: {
-    color: "white",
-    fontSize: 20,
-    fontWeight: "bold",
+    fontSize: 24,
+    fontWeight: 800,
   },
 });
 
