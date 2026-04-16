@@ -10,6 +10,7 @@ const [form, setForm] = useState({
   full_name: "",
   phone: "",
   address: "",
+  email: "",
 });
 
   useEffect(() => {
@@ -22,6 +23,7 @@ const [form, setForm] = useState({
       full_name: user.full_name || "",
       phone: user.phone || "",
       address: user.address || "",
+      email: user.email || "", // email məlumatı olmadığı üçün boş saxlanır
     });
   }
 }, [user]);

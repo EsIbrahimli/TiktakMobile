@@ -2,9 +2,12 @@ import { View, Text, TouchableOpacity } from "react-native";
 import styles from "./Account.styles";
 import { useUserStore } from "../../store/accountStore";
 import { useEffect } from "react";
+import { useNavigation } from "@react-navigation/native"; 
 
 
 export default function AccountHomeScreen({ navigation }) {
+
+  
   
 
   return (

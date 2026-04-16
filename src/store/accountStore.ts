@@ -25,9 +25,13 @@ export const useUserStore = create<State>((set) => ({
     try {
       const data = await accountService.getProfile();
       set({ user: data });
-    } finally {
+    }catch (err) {
+    console.log("GET USER ERROR:", err?.response || err);
+    }
+     finally {
       set({ loading: false });
     }
+   
   },
 
   updateUser: async (data) => {
@@ -38,5 +42,6 @@ export const useUserStore = create<State>((set) => ({
     } finally {
       set({ loading: false });
     }
+
   },
 }));
