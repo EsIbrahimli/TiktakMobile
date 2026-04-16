@@ -19,8 +19,8 @@ export const useAuthStore = create<AuthState>((set) => ({
   setAuth: (data) =>
     set({
       user: data.profile,
-      accessToken: data.tokens.access_token,
-      refreshToken: data.tokens.refresh_token,
+      accessToken: data?.tokens?.access_token,
+      refreshToken: data?.tokens?.refresh_token,
       isLoggedIn: true,
     }),
 

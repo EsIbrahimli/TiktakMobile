@@ -8,7 +8,7 @@ const AuthWelcome = ({ navigation }: any) => {
     <View style={styles.container}>
       
       <Image
-        source={require("./welcome.png")}
+        source={require("../../assets/images/welcome.png")}
         style={styles.image}
         
        
