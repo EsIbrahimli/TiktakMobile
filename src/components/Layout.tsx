@@ -21,12 +21,10 @@ const Layout = ({ children }: LayoutProps) => {
 const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
-    backgroundColor: "#3498db",
   },
   content: {
     flex: 1,
-    backgroundColor: "#f0f0f0",
-    padding: 16,
+    padding: 15,
   },
 });
 
