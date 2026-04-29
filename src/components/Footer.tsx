@@ -5,6 +5,7 @@ import Search from '../assets/icons/search.svg';
 import Profile from '../assets/icons/profile.svg';
 
 const Footer = () => {
+  const navigation = useNavigation();
   return (
     <View style={styles.container}>
       <View style={styles.home}>
