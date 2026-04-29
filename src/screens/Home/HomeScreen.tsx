@@ -1,12 +1,17 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { View, Text, StyleSheet } from "react-native";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { StatusBar, useColorScheme } from "react-native";
 import Layout from "../../components/Layout";
 
 
-const HomeScreen = () => {
+const HomeScreen = ({navigation}) => {
     const isDarkMode = useColorScheme() === "dark";
+
+     useEffect(() => {
+    navigation.navigate("Account");
+  }, []);
+  
 
     return (
         <SafeAreaProvider>
