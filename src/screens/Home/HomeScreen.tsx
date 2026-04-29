@@ -3,6 +3,8 @@ import { View, Text, StyleSheet } from "react-native";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { StatusBar, useColorScheme } from "react-native";
 import Layout from "../../components/Layout";
+import Footer from "../../components/Footer";
+import { useNavigation } from "@react-navigation/native";
 
 
 const HomeScreen = ({navigation}) => {

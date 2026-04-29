@@ -2,9 +2,15 @@ import { View, Text, TextInput, Button } from "react-native";
 import { useEffect, useState } from "react";
 
 import { useUserStore } from "../../../store/accountStore";
+import { useNavigation } from "@react-navigation/native";
+import OrderHistoryScreen from "../OrderHistory/OrderHistoryScreen";
+import AccountInfoScreen from "../AccountInfo/AccountInfoScreen";
+import FavoritesScreen from "../Favorites/FavoritesScreen";
+import styles from "./AccountInfo.styles";
 
 export default function AccountScreen() {
   const { user, getUser, updateUser } = useUserStore();
+  const navigation = useNavigation();
 
 const [form, setForm] = useState({
   full_name: "",

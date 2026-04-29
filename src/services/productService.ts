@@ -1,4 +1,4 @@
-import { axiosInstance } from "./axiosInstance";
+import  apiClient  from "./instance";
 import axios from "axios";
 
 export interface Product {
@@ -55,11 +55,11 @@ export const getProductsByCategory = async (
 ): Promise<Product[]> => {
   const requests = [
     () =>
-      axiosInstance.get("/products", {
+      apiClient.get("/products", {
         params: { category: categoryId },
       }),
     () =>
-      axiosInstance.get("/products", {
+      apiClient.get("/products", {
         params: { category_id: categoryId },
       }),
   ];
@@ -88,6 +88,6 @@ export const getProductsByCategory = async (
 
 
 export const getProductById = async (id: number): Promise<Product> => {
-  const res = await axiosInstance.get(`/products/${id}`);
+  const res = await apiClient.get(`/products/${id}`);
   return normalizeProduct(res.data);
 };
