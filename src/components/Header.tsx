@@ -1,12 +1,18 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import Logo from '../assets/icons/basket.svg';
+import { useNavigation } from "@react-navigation/native";
+import BasketScreen from "../screens/Basket/BasketScreen";
 
 const Header = () => {
+  const navigation = useNavigation();
+
   return (
     <View style={styles.container}>
       <Text style={styles.title}>TIK TAK</Text>
-      <Logo width={23} height={26} />
+      <TouchableOpacity  onPress={() => navigation.navigate("Basket")}>
+        <Logo width={23} height={26} />
+      </TouchableOpacity>
     </View>
   );
 };
