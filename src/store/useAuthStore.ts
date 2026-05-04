@@ -1,34 +1,61 @@
 import { create } from "zustand";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { loginApi, registerApi } from "./../services/authService";
 
-type AuthState = {
-  user: any;
-  accessToken: string | null;
-  refreshToken: string | null;
-  isLoggedIn: boolean;
+export const useAuthStore = create((set) => ({
+  loading: false,
+  token: null,
 
-  setAuth: (data: any) => void;
-  logout: () => void;
-};
+  login: async (payload) => {
+    set({ loading: true });
 
-export const useAuthStore = create<AuthState>((set) => ({
-  user: null,
-  accessToken: null,
-  refreshToken: null,
-  isLoggedIn: false,
+    try {
+      const response = await loginApi(payload.phone, payload.password);
 
-  setAuth: (data) =>
-    set({
-      user: data.profile,
-      accessToken: data?.tokens?.access_token,
-      refreshToken: data?.tokens?.refresh_token,
-      isLoggedIn: true,
-    }),
+      const token = response?.data?.data?.tokens?.access_token;
 
-  logout: () =>
-    set({
-      user: null,
-      accessToken: null,
-      refreshToken: null,
-      isLoggedIn: false,
-    }),
+      if (!token) {
+        throw new Error("Token tapılmadı");
+      }
+
+      await AsyncStorage.setItem("token", token);
+
+      set({ token });
+
+      return { token };
+
+    } finally {
+      set({ loading: false });
+    }
+  },
+
+  signup: async (payload) => {
+    set({ loading: true });
+
+    try {
+      const response = await registerApi(
+        payload.fullName,
+        payload.phone,
+        payload.password
+      );
+
+      const token = response?.data?.data?.tokens?.access_token;
+
+      if (token) {
+        await AsyncStorage.setItem("token", token);
+        set({ token });
+        return { token };
+      }
+
+      return null;
+
+    } finally {
+      set({ loading: false });
+    }
+  },
+
+  logout: async () => {
+    await AsyncStorage.removeItem("token");
+    set({ token: null });
+  },
 }));
