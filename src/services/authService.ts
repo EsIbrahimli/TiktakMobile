@@ -1,18 +1,16 @@
 import apiClient from "./instance";
 
-export const loginUser = async (data: {
-  phone: string;
-  password: string;
-}) => {
-  const response = await apiClient.post("/auth/login", data);
-  return response.data;
+export const loginApi = async (phone, password) => {
+  return await apiClient.post("/auth/login", {
+    phone,
+    password,
+  });
 };
 
-export const registerUser = async (data: {
-  name: string;
-  phone: string;
-  password: string;
-}) => {
-  const response = await apiClient.post("/auth/signup", data);
-  return response.data;
+export const registerApi = async (fullName, phone, password) => {
+  return await apiClient.post("/auth/signup", {
+    full_name: fullName,
+    phone,
+    password,
+  });
 };
